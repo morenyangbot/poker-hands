@@ -152,4 +152,24 @@ public class PokerHandTest {
 
         assertEquals(PokerHandCompareResult.LOSE, result);
     }
+
+    @Test
+    public void should_return_WIN_given_pair_with_four_of_a_kind_hands_in_compare_win() {
+        PokerHand straightPokerHand = new PokerHand(Arrays.asList(AH, QC, KC, JH, TD));
+        PokerHand threeOfAKindPokerHand = new PokerHand(Arrays.asList(AH, AC, AS, QC, JD));
+
+        PokerHandCompareResult result = straightPokerHand.compareWin(threeOfAKindPokerHand);
+
+        assertEquals(PokerHandCompareResult.WIN, result);
+    }
+
+    @Test
+    public void should_return_DRAW_when_compare_two_same_hand_case_in_compare_win() {
+        PokerHand pokerHand = new PokerHand(Arrays.asList(AH, QC, KC, JH, TD));
+        PokerHand samePokerHand = new PokerHand(Arrays.asList(AH, KC, JH, TD, QC));
+
+        PokerHandCompareResult result = pokerHand.compareWin(samePokerHand);
+
+        assertEquals(PokerHandCompareResult.DRAW, result);
+    }
 }
