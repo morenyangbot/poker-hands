@@ -33,11 +33,20 @@ public class PokerHandUtilsTest {
 
     @Test
     public void should_return_true_when_give_a_pair_hand() {
-        PokerHand pokerHand = new PokerHand(Arrays.asList(AH, AC, AS, JH, TD));
+        PokerHand pokerHand = new PokerHand(Arrays.asList(AH, AC, KC, JH, TD));
 
         boolean isPair = PokerHandUtils.isPair(pokerHand);
 
         assertTrue(isPair);
+    }
+
+    @Test
+    public void should_return_false_when_give_a_three_pairs_hand() {
+        PokerHand pokerHand = new PokerHand(Arrays.asList(AH, AC, AS, JH, TD));
+
+        boolean isPair = PokerHandUtils.isPair(pokerHand);
+
+        assertFalse(isPair);
     }
 
     @Test
