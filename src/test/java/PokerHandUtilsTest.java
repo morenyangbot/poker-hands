@@ -117,4 +117,11 @@ public class PokerHandUtilsTest {
         boolean isFlush = PokerHandUtils.isFlush(pokerHand);
         assertFalse(isFlush);
     }
+
+    @Test
+    public void should_return_true_when_given_a_full_house_hands_in_is_full_house() {
+        PokerHand pokerHand = new PokerHand(Arrays.asList(AH, AS, AD, QD, QH));
+        boolean isFullHouse = PokerHandUtils.isFullHouse(pokerHand);
+        assertTrue(isFullHouse);
+    }
 }

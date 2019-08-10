@@ -47,4 +47,12 @@ public class PokerHandUtils {
     public static boolean isFlush(PokerHand pokerHand) {
         return isColorFlush(pokerHand) && !isNumStraight(pokerHand);
     }
+
+    public static boolean isFullHouse(PokerHand pokerHand) {
+        final long FULL_HOUSE_HAND_DISTINCT_SIZE = 2;
+        Map<Character, Long> pokersNumSizeMap = pokerHand.getPokersNumSizeMap();
+        return pokerHand.getPokers().stream().map(Poker::getNum).distinct().count()
+                == FULL_HOUSE_HAND_DISTINCT_SIZE
+                && pokersNumSizeMap.containsValue(3L);
+    }
 }
