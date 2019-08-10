@@ -37,4 +37,21 @@ public class PokerHandTest {
         assertTrue(numSizeMap.containsKey('T'));
         assertEquals(Long.valueOf(2), numSizeMap.get('2'));
     }
+
+    @Test
+    public void should_return_a_correct_map_in_get_color_size_map() {
+        Poker poker = new Poker("AH");
+        Poker poker1 = new Poker("2S");
+        Poker poker2 = new Poker("3D");
+        Poker poker3 = new Poker("TC");
+        Poker poker4 = new Poker("2H");
+        PokerHand pokerHand = new PokerHand(Arrays.asList(poker, poker1, poker2, poker3, poker4));
+
+        Map<Character, Long> numSizeMap = pokerHand.getPokerColorSizeMap();
+        assertTrue(numSizeMap.containsKey('H'));
+        assertTrue(numSizeMap.containsKey('S'));
+        assertTrue(numSizeMap.containsKey('D'));
+        assertTrue(numSizeMap.containsKey('C'));
+        assertEquals(Long.valueOf(2), numSizeMap.get('H'));
+    }
 }

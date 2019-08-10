@@ -30,4 +30,19 @@ public class PokerHand {
         }
         return pokersNumSizeMap;
     }
+
+    public Map<Character, Long> getPokerColorSizeMap() {
+        Map<Character, Long> pokerColorSizeMap = new TreeMap<>();
+        for (Poker poker :
+                pokers) {
+            char key = poker.getColor();
+            Long size = pokerColorSizeMap.get(key);
+            if (size != null) {
+                pokerColorSizeMap.put(key, size + 1);
+            } else {
+                pokerColorSizeMap.put(key, (long) 1);
+            }
+        }
+        return pokerColorSizeMap;
+    }
 }

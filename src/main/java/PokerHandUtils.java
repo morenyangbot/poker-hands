@@ -1,5 +1,6 @@
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class PokerHandUtils {
@@ -24,7 +25,7 @@ public class PokerHandUtils {
                 && pokerHand.getPokersNumSizeMap().containsValue(3L);
     }
 
-    public static boolean isStraight(PokerHand pokerHand) {
+    protected static boolean isNumStraight(PokerHand pokerHand) {
         List<Integer> numIndexList = pokerHand.getPokers().stream().map(Poker::getNum).mapToInt(Poker.ORDER::indexOf).boxed().collect(Collectors.toList());
         int maxOffset = 0;
         for (int i = 1; i < numIndexList.size(); i++) {
@@ -33,5 +34,10 @@ public class PokerHandUtils {
         }
 
         return maxOffset == 1;
+    }
+
+    public static boolean isStraight(PokerHand pokerHand) {
+        Map<Character, Long> pokerColorSizeMap = pokerHand.getPokerColorSizeMap();
+        return isNumStraight(pokerHand) && pokerHand.getPokerColorSizeMap().size() > 1;
     }
 }

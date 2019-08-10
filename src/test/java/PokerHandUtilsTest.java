@@ -6,24 +6,24 @@ import static org.junit.Assert.*;
 
 public class PokerHandUtilsTest {
 
-    private final Poker TH = new Poker("TD");
-    private final Poker TC = new Poker("TD");
-    private final Poker TS = new Poker("TD");
+    private final Poker TH = new Poker("TH");
+    private final Poker TC = new Poker("TC");
+    private final Poker TS = new Poker("TS");
     private final Poker TD = new Poker("TD");
 
-    private final Poker JH = new Poker("JD");
-    private final Poker JC = new Poker("JD");
-    private final Poker JS = new Poker("JD");
+    private final Poker JH = new Poker("JH");
+    private final Poker JC = new Poker("JC");
+    private final Poker JS = new Poker("JS");
     private final Poker JD = new Poker("JD");
 
-    private final Poker QH = new Poker("QD");
-    private final Poker QC = new Poker("QD");
-    private final Poker QS = new Poker("QD");
+    private final Poker QH = new Poker("QH");
+    private final Poker QC = new Poker("QC");
+    private final Poker QS = new Poker("QS");
     private final Poker QD = new Poker("QD");
 
-    private final Poker KH = new Poker("KD");
-    private final Poker KC = new Poker("KD");
-    private final Poker KS = new Poker("KD");
+    private final Poker KH = new Poker("KH");
+    private final Poker KC = new Poker("KC");
+    private final Poker KS = new Poker("KS");
     private final Poker KD = new Poker("KD");
 
     private final Poker AH = new Poker("AH");
@@ -95,5 +95,12 @@ public class PokerHandUtilsTest {
         PokerHand pokerHand = new PokerHand(Arrays.asList(AH, KC, JS, QD, TD));
         boolean isStraight = PokerHandUtils.isStraight(pokerHand);
         assertTrue(isStraight);
+    }
+
+    @Test
+    public void should_return_false_when_give_a_straight_flush_hands_in_is_straight() {
+        PokerHand pokerHand = new PokerHand(Arrays.asList(AH, KH, JH, QH, TH));
+        boolean isStraight = PokerHandUtils.isStraight(pokerHand);
+        assertFalse(isStraight);
     }
 }
