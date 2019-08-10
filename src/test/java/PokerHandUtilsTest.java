@@ -112,7 +112,7 @@ public class PokerHandUtilsTest {
     }
 
     @Test
-    public void should_return_false_when_give_a_flush_hands_in_is_flush() {
+    public void should_return_false_when_give_a_straight_flush_hands_in_is_flush() {
         PokerHand pokerHand = new PokerHand(Arrays.asList(AH, KH, JH, QH, TH));
         boolean isFlush = PokerHandUtils.isFlush(pokerHand);
         assertFalse(isFlush);
@@ -151,5 +151,19 @@ public class PokerHandUtilsTest {
         PokerHand pokerHand = new PokerHand(Arrays.asList(AH, KH, JH, QH, TH));
         boolean isStraightFlush = PokerHandUtils.isStraightFlush(pokerHand);
         assertTrue(isStraightFlush);
+    }
+
+    @Test
+    public void should_return_false_when_given_a_flush_in_is_straight_flush() {
+        PokerHand pokerHand = new PokerHand(Arrays.asList(AH, AH, JH, QH, TH));
+        boolean isStraightFlush = PokerHandUtils.isStraightFlush(pokerHand);
+        assertFalse(isStraightFlush);
+    }
+
+    @Test
+    public void should_return_false_when_given_a_straight_in_is_straight_flush() {
+        PokerHand pokerHand = new PokerHand(Arrays.asList(AH, KC, JS, QD, TD));
+        boolean isStraightFlush = PokerHandUtils.isStraightFlush(pokerHand);
+        assertFalse(isStraightFlush);
     }
 }
