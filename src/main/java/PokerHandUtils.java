@@ -40,7 +40,11 @@ public class PokerHandUtils {
         return isNumStraight(pokerHand) && pokerHand.getPokerColorSizeMap().size() > 1;
     }
 
-    public static boolean isFlush(PokerHand pokerHand) {
+    protected static boolean isColorFlush(PokerHand pokerHand) {
         return pokerHand.getPokerColorSizeMap().size() == 1;
+    }
+
+    public static boolean isFlush(PokerHand pokerHand) {
+        return isColorFlush(pokerHand) && !isNumStraight(pokerHand);
     }
 }
