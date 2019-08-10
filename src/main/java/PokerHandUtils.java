@@ -7,7 +7,9 @@ public class PokerHandUtils {
     }
 
     public static boolean isTowPairs(PokerHand pokerHand) {
-        final int REPEAT_TIMES = 2;
-        return pokerHand.getPokers().stream().map(Poker::getNum).distinct().count() + REPEAT_TIMES == pokerHand.getPokers().size();
+        final long PAIR_HAND_DISTINCT_SIZE = 3;
+        return pokerHand.getPokers().stream().map(Poker::getNum).distinct().count()
+                == PAIR_HAND_DISTINCT_SIZE
+                && pokerHand.getPokersNumSizeMap().containsValue(2L);
     }
 }

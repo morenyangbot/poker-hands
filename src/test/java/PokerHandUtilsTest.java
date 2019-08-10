@@ -64,4 +64,11 @@ public class PokerHandUtilsTest {
         boolean isTowPairs = PokerHandUtils.isTowPairs(pokerHand);
         assertTrue(isTowPairs);
     }
+
+    @Test
+    public void should_return_false_when_give_a_three_pair_hand() {
+        PokerHand pokerHand = new PokerHand(Arrays.asList(AH, AC, AS, JH, QD));
+        boolean isTowPairs = PokerHandUtils.isTowPairs(pokerHand);
+        assertFalse(isTowPairs);
+    }
 }
