@@ -12,4 +12,11 @@ public class PokerHandUtils {
                 == PAIR_HAND_DISTINCT_SIZE
                 && pokerHand.getPokersNumSizeMap().containsValue(2L);
     }
+
+    public static boolean isThreeOfAKind(PokerHand pokerHand) {
+        final long THREE_OF_A_KIND_DISTINCT_SIZE = 3;
+        return pokerHand.getPokers().stream().map(Poker::getNum).distinct().count()
+                == THREE_OF_A_KIND_DISTINCT_SIZE
+                && pokerHand.getPokersNumSizeMap().containsValue(3L);
+    }
 }

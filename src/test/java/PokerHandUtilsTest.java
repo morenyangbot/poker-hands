@@ -41,7 +41,7 @@ public class PokerHandUtilsTest {
     }
 
     @Test
-    public void should_return_false_when_give_a_three_pairs_hand() {
+    public void should_return_false_when_give_a_three_of_a_kind_hand_in_is_pair() {
         PokerHand pokerHand = new PokerHand(Arrays.asList(AH, AC, AS, JH, TD));
 
         boolean isPair = PokerHandUtils.isPair(pokerHand);
@@ -66,9 +66,18 @@ public class PokerHandUtilsTest {
     }
 
     @Test
-    public void should_return_false_when_give_a_three_pair_hand() {
+    public void should_return_false_when_give_a_three_of_a_kind_hand_in_is_two_pairs() {
         PokerHand pokerHand = new PokerHand(Arrays.asList(AH, AC, AS, JH, QD));
         boolean isTowPairs = PokerHandUtils.isTowPairs(pokerHand);
         assertFalse(isTowPairs);
+    }
+
+    @Test
+    public void should_return_true_when_give_a_three_of_a_kind_hand_in_is_three_of_a_kind() {
+        PokerHand pokerHand = new PokerHand(Arrays.asList(AH, AC, AS, JH, TD));
+
+        boolean isThreeOfAKind = PokerHandUtils.isThreeOfAKind(pokerHand);
+
+        assertTrue(isThreeOfAKind);
     }
 }
