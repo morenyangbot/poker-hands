@@ -95,12 +95,14 @@ public class PokerHand {
         }
     }
 
+    // 获取重复次数最多的一组牌
     private Poker getHighestPokerOfMostPokerSet() {
-        char num = getMaxCountPokerSet();
+        char num = getMaxCountPokerNum();
         return getPokerByNumChar(num);
     }
 
-    private char getMaxCountPokerSet() {
+    // 获取重复次数最多且最大的数字
+    private char getMaxCountPokerNum() {
         long maxCount = getPokersNumSizeMap().values().stream().mapToLong(Long::longValue).max().orElse(0);
         Set<Character> matchedSet = new TreeSet<>();
         for (char key : getPokersNumSizeMap().keySet()) {
@@ -116,8 +118,18 @@ public class PokerHand {
                 .orElseThrow(RuntimeException::new);
     }
 
+    // 根据数字获取扑克
     private Poker getPokerByNumChar(char num) {
         return pokers.stream().filter(poker -> poker.getNum() == num).findFirst().orElse(null);
+    }
+
+    // 获取除了满足Case的牌之外最大的一手牌
+    private Poker getMaxPokerOutOfCase() {
+        char maxCountNum = getMaxCountPokerNum();
+        return pokers.stream()
+                .filter(poker -> poker.getNum() != maxCountNum)
+                .min((o1, o2) -> o1.compareByNum(o2) * -1)
+                .orElse(null);
     }
 
     public CompareResult compareWin(PokerHand pokerHand) {
@@ -130,6 +142,6 @@ public class PokerHand {
         if (caseHighestCardCompareResult != CompareResult.DRAW) {
             return caseHighestCardCompareResult;
         }
-        return getHighestPoker().compareWin(pokerHand.getHighestPoker());
+        return getMaxPokerOutOfCase().compareWin(pokerHand.getMaxPokerOutOfCase());
     }
 }

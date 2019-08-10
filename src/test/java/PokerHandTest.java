@@ -232,5 +232,14 @@ public class PokerHandTest {
         assertEquals(CompareResult.LOSE, compareResult);
     }
 
+    @Test
+    public void should_return_correct_result_in_both_full_house_case_with_different_highest_card() {
+        PokerHand winPokerHand = new PokerHand(Arrays.asList(QC, QH, QD, JH, JH));
+        PokerHand losePokerHand = new PokerHand(Arrays.asList(QC, QH, QD, TD, TH));
+
+        CompareResult compareResult = losePokerHand.compareWin(winPokerHand);
+
+        assertEquals(CompareResult.LOSE, compareResult);
+    }
 
 }
