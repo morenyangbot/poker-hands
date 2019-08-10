@@ -142,4 +142,14 @@ public class PokerHandTest {
         HandCase handCase = pokerHand.getHandCase();
         assertEquals(HandCase.STRAIGHT_FLUSH, handCase);
     }
+
+    @Test
+    public void should_return_LOSE_given_pair_with_four_of_a_kind_hands_in_compare_win() {
+        PokerHand pairPokerHand = new PokerHand(Arrays.asList(AH, AC, KC, JH, QD));
+        PokerHand fourOfAKindPokerHand = new PokerHand(Arrays.asList(AH, AC, AS, AD, JD));
+
+        PokerHandCompareResult result = pairPokerHand.compareWin(fourOfAKindPokerHand);
+
+        assertEquals(PokerHandCompareResult.LOSE, result);
+    }
 }

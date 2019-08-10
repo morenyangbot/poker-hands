@@ -73,4 +73,8 @@ public class PokerHand {
         }
         return HandCase.HIGH_CARD;
     }
+
+    public PokerHandCompareResult compareWin(PokerHand pokerHand) {
+        return PokerHandCompareResult.DRAW;
+    }
 }
