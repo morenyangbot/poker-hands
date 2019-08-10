@@ -145,4 +145,11 @@ public class PokerHandUtilsTest {
         boolean isFourOfAKind = PokerHandUtils.isFourOfAKind(pokerHand);
         assertFalse(isFourOfAKind);
     }
+
+    @Test
+    public void should_return_true_when_given_a_straight_flush_in_is_straight_flush() {
+        PokerHand pokerHand = new PokerHand(Arrays.asList(AH, KH, JH, QH, TH));
+        boolean isStraightFlush = PokerHandUtils.isStraightFlush(pokerHand);
+        assertTrue(isStraightFlush);
+    }
 }

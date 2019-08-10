@@ -63,4 +63,8 @@ public class PokerHandUtils {
                 == FOUR_OF_A_KIND_HAND_DISTINCT_SIZE
                 && pokersNumSizeMap.containsValue(4L);
     }
+
+    public static boolean isStraightFlush(PokerHand pokerHand) {
+        return isNumStraight(pokerHand) && isColorFlush(pokerHand);
+    }
 }
