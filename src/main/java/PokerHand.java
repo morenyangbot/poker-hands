@@ -96,15 +96,28 @@ public class PokerHand {
     }
 
     private Poker getHighestPokerOfMostPokerSet() {
+        char num = getMaxCountPokerSet();
+        return getPokerByNumChar(num);
+    }
+
+    private char getMaxCountPokerSet() {
         long maxCount = getPokersNumSizeMap().values().stream().mapToLong(Long::longValue).max().orElse(0);
-        char maxCountNum = '2';
+        Set<Character> matchedSet = new TreeSet<>();
         for (char key : getPokersNumSizeMap().keySet()) {
             if (maxCount == getPokersNumSizeMap().get(key)) {
-                maxCountNum = key;
+                matchedSet.add(key);
             }
         }
-        char finalMaxCountNum = maxCountNum;
-        return pokers.stream().filter(poker -> poker.getNum() == finalMaxCountNum).findAny().orElse(null);
+        return matchedSet.stream()
+                .map(this::getPokerByNumChar)
+                .sorted((o1, o2) -> o1.compareByNum(o2) * -1)
+                .map(Poker::getNum)
+                .findFirst()
+                .orElseThrow(RuntimeException::new);
+    }
+
+    private Poker getPokerByNumChar(char num) {
+        return pokers.stream().filter(poker -> poker.getNum() == num).findFirst().orElse(null);
     }
 
     public CompareResult compareWin(PokerHand pokerHand) {
