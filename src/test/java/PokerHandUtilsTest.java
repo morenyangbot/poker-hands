@@ -39,4 +39,13 @@ public class PokerHandUtilsTest {
 
         assertTrue(isPair);
     }
+
+    @Test
+    public void should_return_false_when_give_a_not_pair_hand() {
+        PokerHand pokerHand = new PokerHand(Arrays.asList(JH, TH, QS, KH, AD));
+
+        boolean isPair = PokerHandUtils.isPair(pokerHand);
+
+        assertFalse(isPair);
+    }
 }
