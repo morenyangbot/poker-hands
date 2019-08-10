@@ -48,4 +48,11 @@ public class PokerHandUtilsTest {
 
         assertFalse(isPair);
     }
+
+    @Test
+    public void should_return_true_when_give_a_tow_pairs_hand() {
+        PokerHand pokerHand = new PokerHand(Arrays.asList(AH, AC, KC, JH, JD));
+        boolean isTowPairs = PokerHandUtils.isTowPairs(pokerHand);
+        assertTrue(isTowPairs);
+    }
 }
