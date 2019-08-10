@@ -80,4 +80,13 @@ public class PokerHandUtilsTest {
 
         assertTrue(isThreeOfAKind);
     }
+
+    @Test
+    public void should_return_false_when_give_a_two_pairs_hand_in_is_three_of_a_kind() {
+        PokerHand pokerHand = new PokerHand(Arrays.asList(AH, AC, JS, JH, TD));
+
+        boolean isThreeOfAKind = PokerHandUtils.isThreeOfAKind(pokerHand);
+
+        assertFalse(isThreeOfAKind);
+    }
 }
