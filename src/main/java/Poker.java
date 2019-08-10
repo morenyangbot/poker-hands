@@ -26,4 +26,13 @@ public class Poker {
         return isNumBiggerThan(poker) ? 1 : -1;
     }
 
+    public CompareResult compareWin(Poker poker) {
+        int currentIndex = ORDER.indexOf(num);
+        int compareIndex = ORDER.indexOf(poker.getNum());
+        if (currentIndex == compareIndex) {
+            return CompareResult.DRAW;
+        }
+        return currentIndex > compareIndex ? CompareResult.WIN : CompareResult.LOSE;
+    }
+
 }

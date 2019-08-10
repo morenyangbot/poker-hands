@@ -74,12 +74,16 @@ public class PokerHand {
         return HandCase.HIGH_CARD;
     }
 
-    public PokerHandCompareResult compareWin(PokerHand pokerHand) {
+    public Poker getHighestPoker() {
+        return pokers.get(pokers.size() - 1);
+    }
+
+    public CompareResult compareWin(PokerHand pokerHand) {
         if (getHandCase().getCode() > pokerHand.getHandCase().getCode()) {
-            return PokerHandCompareResult.WIN;
+            return CompareResult.WIN;
         } else if (getHandCase().getCode() < pokerHand.getHandCase().getCode()) {
-            return PokerHandCompareResult.LOSE;
+            return CompareResult.LOSE;
         }
-        return PokerHandCompareResult.DRAW;
+        return getHighestPoker().compareWin(pokerHand.getHighestPoker());
     }
 }

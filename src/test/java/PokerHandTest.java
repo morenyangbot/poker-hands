@@ -148,9 +148,9 @@ public class PokerHandTest {
         PokerHand pairPokerHand = new PokerHand(Arrays.asList(AH, AC, KC, JH, QD));
         PokerHand fourOfAKindPokerHand = new PokerHand(Arrays.asList(AH, AC, AS, AD, JD));
 
-        PokerHandCompareResult result = pairPokerHand.compareWin(fourOfAKindPokerHand);
+        CompareResult result = pairPokerHand.compareWin(fourOfAKindPokerHand);
 
-        assertEquals(PokerHandCompareResult.LOSE, result);
+        assertEquals(CompareResult.LOSE, result);
     }
 
     @Test
@@ -158,9 +158,9 @@ public class PokerHandTest {
         PokerHand straightPokerHand = new PokerHand(Arrays.asList(AH, QC, KC, JH, TD));
         PokerHand threeOfAKindPokerHand = new PokerHand(Arrays.asList(AH, AC, AS, QC, JD));
 
-        PokerHandCompareResult result = straightPokerHand.compareWin(threeOfAKindPokerHand);
+        CompareResult result = straightPokerHand.compareWin(threeOfAKindPokerHand);
 
-        assertEquals(PokerHandCompareResult.WIN, result);
+        assertEquals(CompareResult.WIN, result);
     }
 
     @Test
@@ -168,8 +168,48 @@ public class PokerHandTest {
         PokerHand pokerHand = new PokerHand(Arrays.asList(AH, QC, KC, JH, TD));
         PokerHand samePokerHand = new PokerHand(Arrays.asList(AH, KC, JH, TD, QC));
 
-        PokerHandCompareResult result = pokerHand.compareWin(samePokerHand);
+        CompareResult result = pokerHand.compareWin(samePokerHand);
 
-        assertEquals(PokerHandCompareResult.DRAW, result);
+        assertEquals(CompareResult.DRAW, result);
     }
+
+    @Test
+    public void should_return_WIN_when_compare_high_card_level_different_high_card_case_in_compare_win() {
+        PokerHand winPokerHand = new PokerHand(Arrays.asList(AH, new Poker("2C"), KC, JH, TD));
+        PokerHand losePokerHand = new PokerHand(Arrays.asList(new Poker("5S"), KC, JH, TD, QC));
+
+        CompareResult result = winPokerHand.compareWin(losePokerHand);
+
+        assertEquals(CompareResult.WIN, result);
+    }
+
+    @Test
+    public void should_return_DRAW_when_compare_high_card_level_different_high_card_case_in_compare_win() {
+        PokerHand pokerHand = new PokerHand(Arrays.asList(new Poker("7H"), new Poker("2C"), KC, JH, TD));
+        PokerHand drawPokerHand = new PokerHand(Arrays.asList(new Poker("5S"), KC, JH, TD, QC));
+
+        CompareResult result = pokerHand.compareWin(drawPokerHand);
+
+        assertEquals(CompareResult.DRAW, result);
+    }
+
+    @Test
+    public void should_return_LOSE_when_compare_high_card_level_different_high_card_case_in_compare_win() {
+        PokerHand winPokerHand = new PokerHand(Arrays.asList(new Poker("7H"), new Poker("2C"), KC, JH, TD));
+        PokerHand losePokerHand = new PokerHand(Arrays.asList(new Poker("5S"), new Poker("6H"), JH, TD, QC));
+
+        CompareResult result = losePokerHand.compareWin(winPokerHand);
+
+        assertEquals(CompareResult.LOSE, result);
+    }
+
+    @Test
+    public void should_return_AH_when_given_AH_KC_JH_TD_QC_in_get_highest_result() {
+        PokerHand pokerHand = new PokerHand(Arrays.asList(AH, KC, JH, TD, QC));
+
+        Poker highestPoker = pokerHand.getHighestPoker();
+
+        assertEquals(AH, highestPoker);
+    }
+
 }
