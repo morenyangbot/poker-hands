@@ -45,4 +45,32 @@ public class PokerHand {
         }
         return pokerColorSizeMap;
     }
+
+    public HandCase getHandCase() {
+        if (PokerHandUtils.isStraightFlush(this)) {
+            return HandCase.STRAIGHT_FLUSH;
+        }
+        if (PokerHandUtils.isFourOfAKind(this)) {
+            return HandCase.FOUR_OF_A_KIND;
+        }
+        if (PokerHandUtils.isFullHouse(this)) {
+            return HandCase.FULL_HOUSE;
+        }
+        if (PokerHandUtils.isFlush(this)) {
+            return HandCase.FLUSH;
+        }
+        if (PokerHandUtils.isStraight(this)) {
+            return HandCase.STRAIGHT;
+        }
+        if (PokerHandUtils.isThreeOfAKind(this)) {
+            return HandCase.THREE_OF_A_KIND;
+        }
+        if (PokerHandUtils.isTowPairs(this)) {
+            return HandCase.TWO_PAIRS;
+        }
+        if (PokerHandUtils.isPair(this)) {
+            return HandCase.PAIR;
+        }
+        return HandCase.HIGH_CARD;
+    }
 }
