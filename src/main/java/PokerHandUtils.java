@@ -1,3 +1,7 @@
+import java.util.Iterator;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class PokerHandUtils {
 
     public static boolean isPair(PokerHand pokerHand) {
@@ -18,5 +22,16 @@ public class PokerHandUtils {
         return pokerHand.getPokers().stream().map(Poker::getNum).distinct().count()
                 == THREE_OF_A_KIND_DISTINCT_SIZE
                 && pokerHand.getPokersNumSizeMap().containsValue(3L);
+    }
+
+    public static boolean isStraight(PokerHand pokerHand) {
+        List<Integer> numIndexList = pokerHand.getPokers().stream().map(Poker::getNum).mapToInt(Poker.ORDER::indexOf).boxed().collect(Collectors.toList());
+        int maxOffset = 0;
+        for (int i = 1; i < numIndexList.size(); i++) {
+            int offset = numIndexList.get(i) - numIndexList.get(i - 1);
+            maxOffset = Math.max(offset, maxOffset);
+        }
+
+        return maxOffset == 1;
     }
 }

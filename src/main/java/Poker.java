@@ -1,5 +1,5 @@
 public class Poker {
-    private static final String ORDER = "2345689TJQKA";
+    protected static final String ORDER = "2345689TJQKA";
 
     private char num;
     private char color;

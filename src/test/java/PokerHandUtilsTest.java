@@ -89,4 +89,11 @@ public class PokerHandUtilsTest {
 
         assertFalse(isThreeOfAKind);
     }
+
+    @Test
+    public void should_return_true_when_give_a_straight_hands_in_is_straight() {
+        PokerHand pokerHand = new PokerHand(Arrays.asList(AH, KC, JS, QD, TD));
+        boolean isStraight = PokerHandUtils.isStraight(pokerHand);
+        assertTrue(isStraight);
+    }
 }
