@@ -103,4 +103,11 @@ public class PokerHandUtilsTest {
         boolean isStraight = PokerHandUtils.isStraight(pokerHand);
         assertFalse(isStraight);
     }
+
+    @Test
+    public void should_return_true_when_give_a_flush_hands_in_is_flush() {
+        PokerHand pokerHand = new PokerHand(Arrays.asList(AH, KH, JH, QH, TH));
+        boolean isFlush = PokerHandUtils.isFlush(pokerHand);
+        assertTrue(isFlush);
+    }
 }

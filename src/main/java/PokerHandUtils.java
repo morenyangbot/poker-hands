@@ -37,7 +37,10 @@ public class PokerHandUtils {
     }
 
     public static boolean isStraight(PokerHand pokerHand) {
-        Map<Character, Long> pokerColorSizeMap = pokerHand.getPokerColorSizeMap();
         return isNumStraight(pokerHand) && pokerHand.getPokerColorSizeMap().size() > 1;
+    }
+
+    public static boolean isFlush(PokerHand pokerHand) {
+        return pokerHand.getPokerColorSizeMap().size() == 1;
     }
 }
