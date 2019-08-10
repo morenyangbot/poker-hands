@@ -124,4 +124,11 @@ public class PokerHandUtilsTest {
         boolean isFullHouse = PokerHandUtils.isFullHouse(pokerHand);
         assertTrue(isFullHouse);
     }
+
+    @Test
+    public void should_return_false_when_given_a_four_of_a_kind_hands_in_is_full_house() {
+        PokerHand pokerHand = new PokerHand(Arrays.asList(AH, AS, AD, AC, QH));
+        boolean isFullHouse = PokerHandUtils.isFullHouse(pokerHand);
+        assertFalse(isFullHouse);
+    }
 }
