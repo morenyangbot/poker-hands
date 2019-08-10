@@ -27,13 +27,13 @@ public class PokerHandUtils {
 
     protected static boolean isNumStraight(PokerHand pokerHand) {
         List<Integer> numIndexList = pokerHand.getPokers().stream().map(Poker::getNum).mapToInt(Poker.ORDER::indexOf).boxed().collect(Collectors.toList());
-        int maxOffset = 0;
         for (int i = 1; i < numIndexList.size(); i++) {
-            int offset = numIndexList.get(i) - numIndexList.get(i - 1);
-            maxOffset = Math.max(offset, maxOffset);
-        }
+            if (numIndexList.get(i) - numIndexList.get(i - 1) != 1) {
+                return false;
+            }
 
-        return maxOffset == 1;
+        }
+        return true;
     }
 
     public static boolean isStraight(PokerHand pokerHand) {
