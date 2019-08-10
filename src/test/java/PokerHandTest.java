@@ -212,4 +212,25 @@ public class PokerHandTest {
         assertEquals(AH, highestPoker);
     }
 
+    @Test
+    public void should_return_correct_result_in_both_pair_case_with_different_highest_card() {
+        PokerHand winPokerHand = new PokerHand(Arrays.asList(KS, QH, KC, JH, TD));
+        PokerHand losePokerHand = new PokerHand(Arrays.asList(AH, QH, JH, TD, QC));
+
+        CompareResult compareResult = winPokerHand.compareWin(losePokerHand);
+
+        assertEquals(CompareResult.WIN, compareResult);
+    }
+
+    @Test
+    public void should_return_correct_result_in_both_flush_case_with_different_highest_card() {
+        PokerHand winPokerHand = new PokerHand(Arrays.asList(AH, new Poker("2H"), QH, KH, JH));
+        PokerHand losePokerHand = new PokerHand(Arrays.asList(new Poker("2H"), QH, KH, JH, TH));
+
+        CompareResult compareResult = losePokerHand.compareWin(winPokerHand);
+
+        assertEquals(CompareResult.LOSE, compareResult);
+    }
+
+
 }

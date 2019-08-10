@@ -78,11 +78,44 @@ public class PokerHand {
         return pokers.get(pokers.size() - 1);
     }
 
+    public Poker getHighestPokerInCase() {
+        switch (getHandCase()) {
+            case PAIR:
+            case THREE_OF_A_KIND:
+            case FOUR_OF_A_KIND:
+            case TWO_PAIRS:
+            case FULL_HOUSE:
+                return getHighestPokerOfMostPokerSet();
+            case HIGH_CARD:
+            case STRAIGHT:
+            case FLUSH:
+            case STRAIGHT_FLUSH:
+            default:
+                return getHighestPoker();
+        }
+    }
+
+    private Poker getHighestPokerOfMostPokerSet() {
+        long maxCount = getPokersNumSizeMap().values().stream().mapToLong(Long::longValue).max().orElse(0);
+        char maxCountNum = '2';
+        for (char key : getPokersNumSizeMap().keySet()) {
+            if (maxCount == getPokersNumSizeMap().get(key)) {
+                maxCountNum = key;
+            }
+        }
+        char finalMaxCountNum = maxCountNum;
+        return pokers.stream().filter(poker -> poker.getNum() == finalMaxCountNum).findAny().orElse(null);
+    }
+
     public CompareResult compareWin(PokerHand pokerHand) {
         if (getHandCase().getCode() > pokerHand.getHandCase().getCode()) {
             return CompareResult.WIN;
         } else if (getHandCase().getCode() < pokerHand.getHandCase().getCode()) {
             return CompareResult.LOSE;
+        }
+        CompareResult caseHighestCardCompareResult = getHighestPokerInCase().compareWin(pokerHand.getHighestPokerInCase());
+        if (caseHighestCardCompareResult != CompareResult.DRAW) {
+            return caseHighestCardCompareResult;
         }
         return getHighestPoker().compareWin(pokerHand.getHighestPoker());
     }
