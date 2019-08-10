@@ -131,4 +131,18 @@ public class PokerHandUtilsTest {
         boolean isFullHouse = PokerHandUtils.isFullHouse(pokerHand);
         assertFalse(isFullHouse);
     }
+
+    @Test
+    public void should_return_true_when_given_a_four_of_a_kind_hands_in_is_four_of_a_kind() {
+        PokerHand pokerHand = new PokerHand(Arrays.asList(AH, AS, AD, AC, QH));
+        boolean isFourOfAKind = PokerHandUtils.isFourOfAKind(pokerHand);
+        assertTrue(isFourOfAKind);
+    }
+
+    @Test
+    public void should_return_true_when_given_a_full_house_hands_in_is_four_of_a_kind() {
+        PokerHand pokerHand = new PokerHand(Arrays.asList(AH, AS, AD, QD, QH));
+        boolean isFourOfAKind = PokerHandUtils.isFourOfAKind(pokerHand);
+        assertFalse(isFourOfAKind);
+    }
 }

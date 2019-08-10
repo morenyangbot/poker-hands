@@ -55,4 +55,12 @@ public class PokerHandUtils {
                 == FULL_HOUSE_HAND_DISTINCT_SIZE
                 && pokersNumSizeMap.containsValue(3L);
     }
+
+    public static boolean isFourOfAKind(PokerHand pokerHand) {
+        final long FOUR_OF_A_KIND_HAND_DISTINCT_SIZE = 2;
+        Map<Character, Long> pokersNumSizeMap = pokerHand.getPokersNumSizeMap();
+        return pokerHand.getPokers().stream().map(Poker::getNum).distinct().count()
+                == FOUR_OF_A_KIND_HAND_DISTINCT_SIZE
+                && pokersNumSizeMap.containsValue(4L);
+    }
 }
