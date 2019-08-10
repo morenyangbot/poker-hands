@@ -75,6 +75,11 @@ public class PokerHand {
     }
 
     public PokerHandCompareResult compareWin(PokerHand pokerHand) {
+        if (getHandCase().getCode() > pokerHand.getHandCase().getCode()) {
+            return PokerHandCompareResult.WIN;
+        } else if (getHandCase().getCode() < pokerHand.getHandCase().getCode()) {
+            return PokerHandCompareResult.LOSE;
+        }
         return PokerHandCompareResult.DRAW;
     }
 }

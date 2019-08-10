@@ -17,5 +17,6 @@ public enum HandCase {
     }
 
     HandCase(int code) {
+        this.code = code;
     }
 }
