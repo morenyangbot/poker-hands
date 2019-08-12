@@ -21,14 +21,60 @@ AH, AC, AD, KH, JH -> false
 ```
 
 4. 判断是否是 twoPair
-5. 判断是否是 threeOfAKind
-6. 判断是否是 straight
-7. 判断是否是 flush
-8. 判断是否是 fullHouse
-9. 判断是否是 fourOfAKind
-10. 判断是否是 straightFlush
 
-**以上判断为严格判断，用例如上**
+```
+AH, AC, KH, KC, TD -> true
+```
+
+```
+AH, AC, AC, KC, KH -> false
+```
+
+5. 判断是否是 threeOfAKind
+
+```
+AH, AC, AC, KC, KH -> true
+```
+```
+AH, AC, KH, KC, TD -> false
+```
+
+6. 判断是否是 straight
+
+```
+AH, KC, JS, QD, TD -> true
+AH, AC, KC, JH, QD -> false
+
+// 同花顺false
+AH, KH, JH, QH, TH -> false
+
+```
+
+7. 判断是否是 flush
+```
+AH, AH, JH, QH, TH -> true
+
+// 同花顺 false
+AH, KH, JH, QH, TH
+```
+
+8. 判断是否是 fullHouse
+```
+AH, AS, AD, QD, QH -> true
+AH, AS, AD, AC, QH -> false
+```
+9. 判断是否是 fourOfAKind
+```
+AH, AS, AD, AC, QH -> true
+AH, AS, AD, QD, QH -> false
+```
+
+10. 判断是否是 straightFlush
+```
+AH, KH, JH, QH, TH -> true
+AH, AH, JH, QH, TH -> false
+AH, KC, JS, QD, TD -> false
+```
 
 11. 获取一手牌中的Case类型
 
